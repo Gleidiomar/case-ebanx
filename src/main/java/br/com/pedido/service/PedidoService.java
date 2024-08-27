@@ -17,5 +17,5 @@ public interface PedidoService extends GenericService<Pedido, Long>{
 
 	ResponseEntity<RetornoPedidoDTO> createPedido(@Valid List<PedidoDTO> listPedido);
 
-	ResponseEntity<List<PedidoDTO>> getAllPedido(String todos, Long numPedido, String dtCadastro);
+	List<Pedido> getAllPedido(String todos, Long numPedido, String dtCadastro);
 }

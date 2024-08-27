@@ -59,7 +59,7 @@ public class PedidoServiceImpl  extends GenericServiceImpl<Pedido, Long> impleme
 		if(possuiCriticas) {
 			retorno.setTemErro(true);
 			retorno.setCriticas(criticas);
-			retorno.setMsg("Erro no cadastro do pedido");
+			retorno.setMsg("Erro no cadastro dos pedidos");
 			
 			return ResponseEntity.ok(retorno);
 		}
@@ -148,14 +148,13 @@ public class PedidoServiceImpl  extends GenericServiceImpl<Pedido, Long> impleme
 	}	
 
 	@Override
-	public ResponseEntity<List<PedidoDTO>> getAllPedido(String todos, Long numPedido, String dtCadastro) {
+	public List<Pedido> getAllPedido(String todos, Long numPedido, String dtCadastro) {
         
 		List<Pedido> listEntity = null;
-		List<PedidoDTO> listDTO= null;
 		
 		if(numPedido != null) {
+			
 			listEntity = repository.findAllById(numPedido);
-			listDTO = pedidoMapper.convertToListDTO(listEntity);
 		}
 		
 		if(dtCadastro != null) {
@@ -165,18 +164,15 @@ public class PedidoServiceImpl  extends GenericServiceImpl<Pedido, Long> impleme
 			try {
 				dataCadastro = sdf.parse(dtCadastro);
 				listEntity = repository.findAllByDtCadastro(dataCadastro);
-				listDTO = pedidoMapper.convertToListDTO(listEntity);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
 		}
 		
 		if(numPedido == null && dtCadastro == null) {
 			listEntity = repository.findAll();
-			listDTO = pedidoMapper.convertToListDTO(listEntity);
 		}
 				
-		return ResponseEntity.ok(listDTO);
+		return listEntity;
 	}
 }

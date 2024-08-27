@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.pedido.domain.Pedido;
 import br.com.pedido.dto.PedidoDTO;
 import br.com.pedido.dto.RetornoPedidoDTO;
+import br.com.pedido.mapper.PedidoMapper;
 import br.com.pedido.service.PedidoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +33,7 @@ import io.swagger.annotations.ApiParam;
 public class PedidoController {
     
 	private final PedidoService service;
+	private final PedidoMapper pedidoMapper = new PedidoMapper();
 
     public PedidoController(PedidoService service) {
         this.service = service;
@@ -53,6 +55,9 @@ public class PedidoController {
             @RequestParam(value = "numPedido", required = false) Long numPedido,
             @RequestParam(value = "dtCadastro", required = false) String dtCadastro){
     	
-        return service.getAllPedido(todos, numPedido, dtCadastro);
+    	List<Pedido> listEntity = service.getAllPedido(todos, numPedido, dtCadastro);
+    	List<PedidoDTO> listDTO = pedidoMapper.convertToListDTO(listEntity);
+    	
+        return ResponseEntity.ok(listDTO);
     }   
 }

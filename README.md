@@ -10,18 +10,18 @@ Criação de pedido
 Exemplo json
 [
   {
-    "codCliente": 51,
-    "dtCadastro": "08/04/2024",
-    "nameProduto": "Carro",
-    "numControle": 7868,
+    "codCliente": 61,
+    "dtCadastro": "08/04/2022",
+    "nameProduto": "Moto",
+    "numControle": 9068,
     "qdtProduto": 1,
-    "valorUniProduto": 200
+    "valorUniProduto": 400
   },
     {
     "codCliente": 1,
-    "dtCadastro": "09/04/2024",
+    "dtCadastro": "09/04/2023",
     "nameProduto": "Carro",
-    "numControle": 7869,
+    "numControle": 7850,
     "qdtProduto": 2,
     "valorUniProduto": 200
   }
