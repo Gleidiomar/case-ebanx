@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpStatus;
 
 import br.com.case_ebanx.dto.EventRequest;
@@ -22,9 +25,9 @@ public class AccountController {
     }
     
     @PostMapping("/reset")
-    @ResponseStatus(HttpStatus.OK)
-    public void reset() {
+    public void reset(HttpServletResponse response) {
         service.reset();
+        response.setStatus(HttpServletResponse.SC_OK);
     }
 
     @GetMapping("/balance")
