@@ -1,4 +1,4 @@
-package br.com.pedido;
+package br.com.case_ebanx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,10 +9,10 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableScheduling
-public class PedidoApplication {
+public class CaseEbanxApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PedidoApplication.class, args);
+		SpringApplication.run(CaseEbanxApplication.class, args);
 	}
 	
 	@Bean

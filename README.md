@@ -4,36 +4,22 @@ API Endpoint
 
 Endereço do gateway para execução de testes com a API:
 http://localhost:8081/api/swagger-ui.html
-Existe 5 pedidos ja cadastro 
+Existe 5 contas ja cadastra 
 
-Criação de pedido
+Criação da conta
 Exemplo json
-[
-  {
-    "codCliente": 61,
-    "dtCadastro": "08/04/2022",
-    "nameProduto": "Moto",
-    "numControle": 9068,
-    "qdtProduto": 1,
-    "valorUniProduto": 400
-  },
-    {
-    "codCliente": 1,
-    "dtCadastro": "09/04/2023",
-    "nameProduto": "Carro",
-    "numControle": 7850,
-    "qdtProduto": 2,
-    "valorUniProduto": 200
-  }
-]
+{ "numConta": 234, "saldo":180.37}
 
-Listagem/filtragem 
-lista todos usar o parametro "todos"
-Formato para pesquisar por data "dd/MM/yyyy"
+Criação da transacao
+Exemplo json
+{"formaPagamento":"D", "numConta": 234, "valor":10}
+
+Pesquisar a conta
+{"numConta": 234, "saldo": 170.07}
 
 Endereço do gateway par aacessar o banco h2
-http://localhost:8081/pedido/api/h2-console
+http://localhost:8081/api/h2-console
 
-JDBC URL=jdbc:h2:mem:pedido-service
+JDBC URL=jdbc:h2:mem:gestao-service
 username=sa
 password=

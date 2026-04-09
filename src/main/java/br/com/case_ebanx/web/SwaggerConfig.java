@@ -1,4 +1,4 @@
-package br.com.pedido.web;
+package br.com.case_ebanx.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,13 +18,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 	
-	private static  final String TITLE="PEDIDO API";
+	private static  final String TITLE="GESTAO CASE EBANX";
 	
 	@Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()                                  
-          .apis(RequestHandlerSelectors.basePackage("br.com.pedido.controller"))              
+          .apis(RequestHandlerSelectors.basePackage("br.com.case_ebanx.controller"))              
           .paths(PathSelectors.any())                          
           .build()
           .apiInfo(apiInfo());

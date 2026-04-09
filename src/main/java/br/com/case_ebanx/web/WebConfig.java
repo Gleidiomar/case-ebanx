@@ -1,12 +1,12 @@
 /**
  * 
  */
-package br.com.pedido.web;
+package br.com.case_ebanx.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
-import br.com.pedido.interceptor.LoggerInterceptor;
+import br.com.case_ebanx.interceptor.LoggerInterceptor;
 
 /**
  * Configuração para ter o controle das características padrões do SPRING e override do LoggerInterceptor no mesmo
