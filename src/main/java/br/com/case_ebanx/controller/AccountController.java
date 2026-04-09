@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-
 import br.com.case_ebanx.dto.EventRequest;
 import br.com.case_ebanx.service.AccountService;
 
@@ -22,12 +20,9 @@ public class AccountController {
     }
     
     @PostMapping("/reset")
-    public void reset(HttpServletResponse response) throws Exception {
+    public ResponseEntity<?> reset() {
         service.reset();
-
-        response.reset(); // limpa tudo
-        response.setStatus(200);
-        response.getOutputStream().flush(); // garante vazio total
+        return ResponseEntity.status(200).body(0);
     }
 
     @GetMapping("/balance")

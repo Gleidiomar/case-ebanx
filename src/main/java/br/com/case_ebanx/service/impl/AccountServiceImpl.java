@@ -17,10 +17,16 @@ public class AccountServiceImpl implements AccountService {
 
 	private final Map<String, Account> accounts = new ConcurrentHashMap<>();
 	
+	/**
+	 * Limpa todas as contas em memória, resetando o estado da aplicação.
+	 */
 	public void reset() {
 	    accounts.clear();
 	}
 
+	/**
+	 * Retorna o saldo da conta informada ou 404 caso não exista.
+	 */
     public ResponseEntity<?> getBalance(String accountId) {
         Account account = accounts.get(accountId);
 
@@ -31,6 +37,10 @@ public class AccountServiceImpl implements AccountService {
         return ResponseEntity.ok(account.getBalance());
     }
 
+    /**
+     * Processa o evento (deposit, withdraw ou transfer), validando os dados
+     * e delegando para a operação correspondente.
+     */
     public ResponseEntity<?> handleEvent(EventRequest request) {
     	
     	if (request.getAmount() == null || request.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
@@ -52,6 +62,9 @@ public class AccountServiceImpl implements AccountService {
     	}
     }
 
+    /**
+     * Realiza depósito na conta de destino, criando-a se necessário.
+     */
     private ResponseEntity<?> deposit(EventRequest req) {
         Account account = accounts.computeIfAbsent(req.getDestination(), Account::new);
         account.deposit(req.getAmount());
@@ -66,6 +79,9 @@ public class AccountServiceImpl implements AccountService {
         return ResponseEntity.status(201).body(response);
     }
 
+    /**
+     * Realiza saque na conta de origem, validando existência e saldo suficiente.
+     */
     private ResponseEntity<?> withdraw(EventRequest req) {
         Account account = accounts.get(req.getOrigin());
 
@@ -89,6 +105,10 @@ public class AccountServiceImpl implements AccountService {
         return ResponseEntity.status(201).body(response);
     }
 
+    /**
+     * Realiza transferência entre contas de forma atômica,
+     * garantindo consistência e evitando concorrência.
+     */
     private ResponseEntity<?> transfer(EventRequest req) {
 
         synchronized (this) {
