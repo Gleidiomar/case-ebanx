@@ -20,9 +20,9 @@ public class AccountController {
     }
     
     @PostMapping("/reset")
-    public ResponseEntity<?> reset() {
+    public ResponseEntity<Void> reset() {
         service.reset();
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(200).build();
     }
 
     @GetMapping("/balance")
