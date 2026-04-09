@@ -22,7 +22,7 @@ public class AccountController {
     @PostMapping("/reset")
     public ResponseEntity<?> reset() {
         service.reset();
-        return ResponseEntity.status(200).body(0);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/balance")
