@@ -109,11 +109,11 @@ public class AccountServiceImpl implements AccountService {
 
             Map<String, Object> originMap = new HashMap<>();
             originMap.put("id", origin.getId());
-            originMap.put("balance", origin.getBalance().stripTrailingZeros());
+            originMap.put("balance", origin.getBalance());
 
             Map<String, Object> destinationMap = new HashMap<>();
             destinationMap.put("id", destination.getId());
-            destinationMap.put("balance", destination.getBalance().stripTrailingZeros());
+            destinationMap.put("balance", destination.getBalance());
 
             Map<String, Object> response = new HashMap<>();
             response.put("origin", originMap);

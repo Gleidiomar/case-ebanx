@@ -52,7 +52,8 @@ class AccountServiceImplTest {
         Map<?, ?> destination = (Map<?, ?>) body.get("destination");
 
         assertEquals("100", destination.get("id"));
-        assertEquals(new BigDecimal("10"), destination.get("balance"));
+        assertTrue(new BigDecimal("10")
+                .compareTo((BigDecimal) destination.get("balance")) == 0);
     }
 
     @Test
